@@ -6,8 +6,8 @@
 using CppAD::AD;
 
 // TODO: Set the timestep length and duration
-size_t N = 10;
-double dt = 0.15;
+size_t N = 20;
+double dt = 0.1;
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -22,16 +22,16 @@ double dt = 0.15;
 const double Lf = 2.67;
 
 // Definition of variables to be used
-int cost_cte_factor = 2000;
-int cost_epsi_factor = 2000;
-int cost_v_factor = 1;
-int cost_current_delta_factor = 1100;
-int cost_current_a_factor = 10;
-int cost_diff_delta_factor = 100;
-int cost_diff_a_factor = 10;
+int cost_cte_factor = 10;//2000;
+int cost_epsi_factor = 10;//2000;
+int cost_v_factor = 10;//1;
+int cost_current_delta_factor = 1000;//1100;
+int cost_current_a_factor = 10;//10;
+int cost_diff_delta_factor = 100;//100;
+int cost_diff_a_factor = 10;//10;
 double ref_cte = 0;
 double ref_epsi = 0;
-double ref_v = 110;
+double ref_v = 20;
 
 size_t x_start = 0;
 size_t y_start = x_start + N;
@@ -72,6 +72,7 @@ class FG_eval {
       fg[0] += cost_diff_delta_factor*CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
       fg[0] += cost_diff_a_factor*CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
     }
+    //std::cout << "fg[0] " << fg[0] << std::endl;
     // Define Constraints
     fg[1 + x_start] = vars[x_start];
     fg[1 + y_start] = vars[y_start];
@@ -98,7 +99,6 @@ class FG_eval {
 
       AD<double> delta0 = vars[delta_start + i];
       AD<double> a0 = vars[a_start + i];
-
       AD<double> f0 = coeffs[0] + coeffs[1] * x0 + coeffs[2] * pow(x0,2) + coeffs[3] * pow(x0,3);
       AD<double> psides0 = CppAD::atan(coeffs[1] + (2 * coeffs[2] * x0) + (3 * coeffs[3]* pow(x0,2) ));
 
@@ -231,7 +231,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 
   // Cost
   auto cost = solution.obj_value;
-  std::cout << "Cost " << cost << std::endl;
+  //std::cout << "Cost " << cost << std::endl;
   // TODO: Return the first actuator values. The variables can be accessed with
   // `solution.x[i]`.
   //
