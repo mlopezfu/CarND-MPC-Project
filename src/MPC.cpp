@@ -6,7 +6,7 @@
 using CppAD::AD;
 
 // TODO: Set the timestep length and duration
-size_t N = 20;
+size_t N = 10;
 double dt = 0.1;
 
 // This value assumes the model presented in the classroom is used.
@@ -22,16 +22,16 @@ double dt = 0.1;
 const double Lf = 2.67;
 
 // Definition of variables to be used
-int cost_cte_factor = 10;//2000;
+int cost_cte_factor = 100;//2000;
 int cost_epsi_factor = 10;//2000;
 int cost_v_factor = 10;//1;
 int cost_current_delta_factor = 1000;//1100;
 int cost_current_a_factor = 10;//10;
-int cost_diff_delta_factor = 100;//100;
+int cost_diff_delta_factor = 1000;//100;
 int cost_diff_a_factor = 10;//10;
 double ref_cte = 0;
 double ref_epsi = 0;
-double ref_v = 20;
+double ref_v = 22;
 
 size_t x_start = 0;
 size_t y_start = x_start + N;

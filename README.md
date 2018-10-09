@@ -78,3 +78,31 @@ In the main.cpp (line 212) file there is included a 100 ms delay to model the re
 ## Technical difficulties
 
 It has been difficult to make the project work on a mac. Thanks to [Dario Cazzani](https://discussions.udacity.com/u/dariocazzani) for their Docker instructions that save my life and let me compile with the IPOPT and CPPAD libraries.
+
+## Review
+I have made the changes proposed in the review, and can get a better behaviour, but not as good to raise the speed.
+
+After the changes, the values of N and dt have changed, and now N=10 and dt=0.1 give the best results.
+
+I think that the problems
+
+ N: 10  dt: 0.10 
+It has better behaviour. It can give many laps.
+ 
+ <a href="http://www.youtube.com/watch?feature=player_embedded&v=ZBY6HlSB4_4
+" target="_blank"><img src="http://img.youtube.com/vi/ZBY6HlSB4_4/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="600" border="10" /></a>
+
+ N: 20  dt: 0.10 
+ Where the car has some zigzag driving. It stays on the road, but its not very stable.
+ 
+ <a href="http://www.youtube.com/watch?feature=player_embedded&v=Dr2biNf4b3Q
+" target="_blank"><img src="http://img.youtube.com/vi/Dr2biNf4b3Q/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="600" border="10" /></a>
+ 
+ N: 20 dt: 0.05
+ It performs well, but overshoots on curves. N=10 gives best results.
+ 
+ <a href="http://www.youtube.com/watch?feature=player_embedded&v=GbxzgxThExc
+" target="_blank"><img src="http://img.youtube.com/vi/GbxzgxThExc/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="600" border="10" /></a>

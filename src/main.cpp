@@ -99,8 +99,8 @@ int main() {
           double delta=j[1]["steering_angle"];
           //delta = delta * (-1);
           double a = j[1]["throttle"];
-          std::cout << "delta " << delta << std::endl;
-          std::cout << "a " << a << std::endl;
+          //std::cout << "delta " << delta << std::endl;
+          //std::cout << "a " << a << std::endl;
           /*
           * TODO: Calculate steering angle and throttle using MPC.
           *
@@ -127,22 +127,23 @@ int main() {
           double cte = polyeval(coeffs, 0);
           double epsi = -atan(coeffs[1]);
 
-//std::cout << "px " << px << std::endl;
-//std::cout << "py " << py << std::endl;
-//std::cout << "psi " << psi << std::endl;
-  
-px = v * cos(psi) * latency_dt;  // px = 0 in car coordinate
-py = v * sin(psi) * latency_dt;  // py = 0 in car coordinate
-psi = v * (-delta) / Lf * latency_dt;  // psi = 0 in car coordinate
-    //std::cout << "v " << v << std::endl;
-double v_ = v + a * latency_dt;
-cte = cte + v * sin(epsi) * latency_dt;
-epsi = epsi + v * (-delta) / Lf * latency_dt;  // psi - psi_des = epsi in car coordinate
-   
-   /*
-std::cout << "px " << px << std::endl;
-std::cout << "py " << py << std::endl;
-std::cout << "psi " << psi << std::endl;
+          //std::cout << "px " << px << std::endl;
+          //std::cout << "py " << py << std::endl;
+          //std::cout << "psi " << psi << std::endl;
+          //px = v * cos(psi) * latency_dt;  // px = 0 in car coordinate
+          px = v * latency_dt; //as cos(0) = 1
+          //py = v * sin(psi) * latency_dt;  // py = 0 in car coordinate
+          py = 0; //as sin(0) = 0
+          psi = v * (-delta) / Lf * latency_dt;  // psi = 0 in car coordinate
+              //std::cout << "v " << v << std::endl;
+          double v_ = v + a * latency_dt;
+          cte = cte + v * sin(epsi) * latency_dt;
+          epsi = epsi + v * (-delta) / Lf * latency_dt;  // psi - psi_des = epsi in car coordinate
+             
+             /*
+          std::cout << "px " << px << std::endl;
+          std::cout << "py " << py << std::endl;
+          std::cout << "psi " << psi << std::endl;
 
 
 
